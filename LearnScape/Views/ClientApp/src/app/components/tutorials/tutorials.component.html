@@ -1,0 +1,14 @@
+<h2>Tutorials</h2>
+<ul>
+  <li *ngFor="let tutorial of tutorials">
+    <h3>{{ tutorial.title }}</h3>
+    <p>{{ tutorial.description }}</p>
+    <p *ngIf="tutorial.type === 'video'">
+      <a href="{{ tutorial.url }}">Watch the video tutorial</a>
+    </p>
+    <div *ngIf="tutorial.type === 'written'">
+      <p>Read the written tutorial:</p>
+      <div [innerHtml]="tutorial.content"></div>
+    </div>
+  </li>
+</ul>

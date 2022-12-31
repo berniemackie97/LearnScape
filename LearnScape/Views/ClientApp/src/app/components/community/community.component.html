@@ -1,0 +1,48 @@
+<h2>Community</h2>
+
+<!-- Search bar -->
+<div>
+  <label for="search-input">Search:</label>
+  <input type="text" id="search-input" [(ngModel)]="searchTerm" (input)="search()">
+</div>
+
+<!-- Post list -->
+<ul>
+  <li *ngFor="let post of posts">
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.author }}</p>
+    <pre>{{ post.code }}</pre>
+    <p>{{ post.description }}</p>
+    <p>{{ post.date | date }}</p>
+    <button (click)="showComments(post)">Show comments</button>
+    <div *ngIf="post.showComments">
+      <h4>Comments</h4>
+      <ul>
+        <li *ngFor="let comment of post.comments">
+          <p>{{ comment.text }}</p>
+          <p>{{ comment.author }}</p>
+          <p>{{ comment.date | date }}</p>
+        </li>
+      </ul>
+      <form (submit)="addComment(post)">
+        <label for="comment-input">Add a comment:</label>
+        <input type="text" id="comment-input" [(ngModel)]="newCommentText">
+        <button type="submit">Post comment</button>
+      </form>
+    </div>
+  </li>
+</ul>
+
+<!-- New post form -->
+<form (submit)="addPost()">
+  <label for="title-input">Title:</label>
+  <input type="text" id="title-input" [(ngModel)]="newPostTitle">
+  <br>
+  <label for="code-input">Code:</label>
+  <textarea id="code-input" [(ngModel)]="newPostCode"></textarea>
+  <br>
+  <label for="description-input">Description:</label>
+  <textarea id="description-input" [(ngModel)]="newPostDescription"></textarea>
+  <br>
+  <button type="submit">Post</button>
+</form>

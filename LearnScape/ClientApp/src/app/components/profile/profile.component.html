@@ -6,13 +6,16 @@
 
 <!-- Edit profile form -->
 <form (submit)="saveChanges()">
-  <label for="name-input">Name:</label>
-  <input type="text" id="name-input" [(ngModel)]="editedName">
-  <br>
-  <label for="email-input">Email:</label>
-  <input type="email" id="email-input" [(ngModel)]="editedEmail">
-  <br>
-  <button type="submit">Save changes</button>
+    <label for="name-input">Name:</label>
+    <input type="text" id="name-input" [(ngModel)]="editedName">
+    <br>
+    <label for="email-input">Email:</label>
+    <input type="email" id="email-input" [(ngModel)]="editedEmail">
+    <br>
+    <button type="submit">Save changes</button>
 </form>
+
+<button (click)="logout()">Logout</button>
+
 
 <p *ngIf="errorMessage">{{ errorMessage }}</p>

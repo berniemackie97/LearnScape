@@ -11,13 +11,18 @@ export class NavMenuComponent {
     constructor(private userService: UserService, private router: Router) {}
 
     isExpanded = false;
-    isLoggedIn = false;
+
+    // Bind the isLoggedIn property to the isLoggedIn value in the UserService
+    get isLoggedIn(): boolean {
+        return this.userService.isLoggedIn;
+    }
+    set isLoggedIn(value: boolean) {
+        this.userService.isLoggedIn = value;
+    }
 
     ngOnInit() {
-        // Get the value from local storage
-        const isLoggedIn = localStorage.getItem("isLoggedIn");
-        // Set the isLoggedIn property based on the value from local storage
-        this.isLoggedIn = isLoggedIn === "true";
+        // Get the value from local storage and update the isLoggedIn value in the UserService
+        this.isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     }
 
     collapse() {
